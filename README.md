@@ -1,4 +1,4 @@
-This is the README file for the Stress testing tool.
+This is the README file for the database testing tool.
 
 -------------------------------------------------------------------------------
 CONTENTS
@@ -26,7 +26,7 @@ Tel: +374-98-745113
 INTRODUCTION
 -------------------------------------------------------------------------------
 
-This project is defined for running stress testing and providing the results.
+This project is defined for running database testing and providing the results.
 
 
 -------------------------------------------------------------------------------
@@ -35,7 +35,7 @@ DIRECTORY STRUCTURE
 
 ```
 ├── README.md
-├── stress_testing_runner.py
+├── database_testing_runner.py
 ├── jmeter_test_suite
 │   ├── config.ini
 │   ├── connect_to_hyperq_performance_testing.jmx
@@ -202,13 +202,13 @@ http://www.baeldung.com/install-maven-on-windows-linux-mac
 USAGE
 -------------------------------------------------------------------------------
 
-Python script for doing Stress Testing by running JMeter scripts and
+Python script for doing Database Testing by running JMeter scripts and
 generating reports in form of graphs.
 
 
 usage:
 ```
-python stress_testing_runner.py [-h] [-j JMX] [-c CONFIG_FILE] [-r REPORT_DIR]
+python database_testing_runner.py [-h] [-j JMX] [-c CONFIG_FILE] [-r REPORT_DIR]
                                 [-sc SOFT_CLEANUP] [-hc HARD_CLEANUP]
 ```
 
@@ -233,7 +233,7 @@ command line arguments:
 
 run example:
 ```
-python stress_testing_runner.py \
+python database_testing_runner.py \
        --jmx jmeter_test_suite/connect_to_hyperq_performance_testing.jmx \
        --config_file jmeter_test_suite/config.ini --report_dir ~/reports/ \
        --soft_cleanup false

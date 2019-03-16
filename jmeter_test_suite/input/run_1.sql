@@ -1,0 +1,1 @@
+dtm set timing on;;
