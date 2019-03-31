@@ -5,7 +5,7 @@ from os.path import basename
 from run_suite.properties import Properties
 
 
-def generate_content(title, path, testbox_ip, hyperq_ip):
+def generate_content(title, path, testbox_ip, teradata_ip):
     content = ""
     files = glob.glob("%s/*.png" % path)
     if (len(files) != 0):
@@ -20,7 +20,7 @@ def generate_content(title, path, testbox_ip, hyperq_ip):
                 subtitle = chart_name.replace("_", " ").upper()
                 content += "<h3>%s</h3>" % subtitle
                 content += "<p>%s - TestBox</p>" % testbox_ip
-                content += "<p>%s  - Hyper-Q</p>" % hyperq_ip
+                content += "<p>%s  - Teradata</p>" % teradata_ip
                 image = "perfmon_report/%s" % os.path.basename(f)
             else:
                 image = os.path.basename(f)
@@ -35,13 +35,13 @@ def replace_in_file(file_path, text_to_search, replacement_text):
         f.write(file_content)
 
 
-def generate_html(report_dir, testbox_ip, hyperq_ip):
+def generate_html(report_dir, testbox_ip, teradata_ip):
     html_path = "%s/index.html" % report_dir
 
-    curve_info = generate_content("Latency / TPS curve", report_dir, testbox_ip, hyperq_ip)
+    curve_info = generate_content("Latency / TPS curve", report_dir, testbox_ip, teradata_ip)
     replace_in_file(html_path, "LATENCY_VS_TPS_CURVE", curve_info)
 
-    perfmon_info = generate_content("PerfMon Metrics Reports", "%s/perfmon_report" % report_dir, testbox_ip, hyperq_ip)
+    perfmon_info = generate_content("PerfMon Metrics Reports", "%s/perfmon_report" % report_dir, testbox_ip, teradata_ip)
     replace_in_file(html_path, "PERFMON_REPORTS", perfmon_info)
 
 
@@ -72,4 +72,4 @@ def generate_report(run_id, test_configs):
     for pngfile in glob.iglob("%s/*.png" % Properties.PERFMON_REPORT_DIR):
         shutil.copy(pngfile, perfmon_report_dir)
 
-    generate_html(report_dir, test_configs.options['testbox_ip'], test_configs.options['hyperq_ip'])
+    generate_html(report_dir, test_configs.options['testbox_ip'], test_configs.options['teradata_ip'])

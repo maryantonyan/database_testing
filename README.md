@@ -38,7 +38,7 @@ DIRECTORY STRUCTURE
 ├── database_testing_runner.py
 ├── jmeter_test_suite
 │   ├── config.ini
-│   ├── connect_to_hyperq_performance_testing.jmx
+│   ├── connect_to_db_performance_testing.jmx
 │   └── input
 │       ├── input.sql
 │       ├── run_1.sql
@@ -234,7 +234,7 @@ command line arguments:
 run example:
 ```
 python database_testing_runner.py \
-       --jmx jmeter_test_suite/connect_to_hyperq_performance_testing.jmx \
+       --jmx jmeter_test_suite/connect_to_db_performance_testing.jmx \
        --config_file jmeter_test_suite/config.ini --report_dir ~/reports/ \
        --soft_cleanup false
 ```
@@ -247,7 +247,7 @@ CONFIG FILE EXAMPLE
 ```
 ....
 
-[run_2.1]
+[run_1]
 NUM_OF_USERS = 100
 INITIAL_DELAY = 2
 USERS_RAMP_UP = 10
@@ -258,24 +258,8 @@ NUM_OF_CONNECTIONS = 0
 CONNECTION_TIMEOUT = 10000
 DATABASE_URL = jdbc:teradata://54.190.11.132/testing_db
 JDBC_DRIVER_CLASS = com.teradata.jdbc.TeraDriver
-USERNAME = gpadmin
-PASSWORD = gpadmingpadmin
-STATEMENT = "SELECT 1 FROM table1"
-GRANULARITY = 10
-
-[run_2.2]
-NUM_OF_USERS = 100
-INITIAL_DELAY = 2
-USERS_RAMP_UP = 10
-RAMP_UP_STEP_COUNT = 10
-FULL_LOAD_PERIOD = 5
-USERS_STOP_PERIOD = 1
-NUM_OF_CONNECTIONS = 0
-CONNECTION_TIMEOUT = 10000
-DATABASE_URL = jdbc:postgresql://greenplum.cpeyd9zdyul5.us-west-2.rds.amazonaws.com/testing_db
-JDBC_DRIVER_CLASS = org.postgresql.Driver
-USERNAME = gpadmin
-PASSWORD = gpadmingpadmin
+USERNAME = dbc
+PASSWORD = dbc
 STATEMENT = "SELECT 1 FROM table1"
 GRANULARITY = 10
 

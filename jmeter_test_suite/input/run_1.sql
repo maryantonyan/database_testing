@@ -1,1 +1,1 @@
-dtm set timing on;;
+SELECT 1;;

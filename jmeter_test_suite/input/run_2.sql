@@ -1,1 +1,1 @@
-SELECT 1 FROM table1;;
+SELECT * FROM testing_db.test;;
