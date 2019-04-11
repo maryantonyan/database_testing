@@ -1,0 +1,5 @@
+Test ID|Description|Max Load|Duration<br/>Delay / Ramp UP / Full Load / Stop|RPS|Latency<br/>90%|CPU|Memory|Reports
+1|Lights on test<br />Simple query "SELECT 1"|100 threads|2 min/ 10 min/ 5 min/ 0 min|||||reports/test_plan/1
+2|Result set handling – best case<br />Run a simple "select * from narrow_table" query that returns 100 rows with 10 columns and a mix of data types.|50 threads|2 min/ 10 min/ 5 min/ 1 min||ms|%|%|reports/test_plan/2
+3|Result set handling – pessimistic case<br />Run a simple "select * from wide_table" query that returns 10K rows with 100 columns and a mix of data types.|50 threads|2 min/ 10 min/ 5 min/ 1 min||ms|%|%|reports/test_plan/3
+4|Full survival test<br />Run the equally weighted query mix from test 2 and 3 with the lower load for a long time to test for resource / memory leaks.|50 threads|2 min/ 1 min/ 120 min/ 0 min||ms|%|%|reports/test_plan/4

@@ -35,14 +35,14 @@ def replace_in_file(file_path, text_to_search, replacement_text):
         f.write(file_content)
 
 
-def generate_html(report_dir, testbox_ip, teradata_ip):
-    html_path = "%s/index.html" % report_dir
+def generate_index_php(report_dir, testbox_ip, teradata_ip):
+    php_path = "%s/index.php" % report_dir
 
     curve_info = generate_content("Latency / TPS curve", report_dir, testbox_ip, teradata_ip)
-    replace_in_file(html_path, "LATENCY_VS_TPS_CURVE", curve_info)
+    replace_in_file(php_path, "LATENCY_VS_TPS_CURVE", curve_info)
 
     perfmon_info = generate_content("PerfMon Metrics Reports", "%s/perfmon_report" % report_dir, testbox_ip, teradata_ip)
-    replace_in_file(html_path, "PERFMON_REPORTS", perfmon_info)
+    replace_in_file(php_path, "PERFMON_REPORTS", perfmon_info)
 
 
 def generate_report(run_id, test_configs):
@@ -55,11 +55,11 @@ def generate_report(run_id, test_configs):
         shutil.rmtree(report_dir)
     os.makedirs(report_dir)
 
-    """ Copy index.html into report directory """
-    shutil.copy("./templates/index.html", report_dir)
+    """ Copy index.php into report directory """
+    shutil.copy("./templates/index.php", report_dir)
     shutil.copy("./templates/resources/img/logo.svg", report_dir)
 
-    """ Copy latnecy / tps curve report images """
+    """ Copy latency / tps curve report images """
     shutil.copy("%s/report_img.png" % Properties.BASE_DIR, report_dir)
 
     """ Copy JMeter dashboard report to web server """
@@ -72,4 +72,4 @@ def generate_report(run_id, test_configs):
     for pngfile in glob.iglob("%s/*.png" % Properties.PERFMON_REPORT_DIR):
         shutil.copy(pngfile, perfmon_report_dir)
 
-    generate_html(report_dir, test_configs.options['testbox_ip'], test_configs.options['teradata_ip'])
+    generate_index_php(report_dir, test_configs.options['testbox_ip'], test_configs.options['teradata_ip'])

@@ -1,1 +1,1 @@
-SELECT * FROM testing_db.test;;
+SELECT * FROM narrow_table;;

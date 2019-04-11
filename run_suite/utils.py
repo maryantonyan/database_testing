@@ -22,14 +22,14 @@ def set_granularity(test_configs):
 
 
 """ Remove generated temporary files """
-def soft_cleanup():
+def _soft_cleanup():
     if os.path.exists("%s/temp/" % Properties.BASE_DIR):
         shutil.rmtree("%s/temp/" % Properties.BASE_DIR)
     run_command("pyclean .")
 
 
 """ Remove generated reports """
-def hard_cleanup():
+def _hard_cleanup():
     if os.path.exists(Properties.BASE_DIR):
         shutil.rmtree(Properties.BASE_DIR)
 
@@ -37,9 +37,9 @@ def hard_cleanup():
 def cleanup(soft_cleanup, hard_cleanup):
     """ Cleanup """
     if soft_cleanup == "true":
-        soft_cleanup()
+        _soft_cleanup()
 
     if hard_cleanup == "true":
-        hard_cleanup()
+        _hard_cleanup()
 
     run_command("pyclean .")

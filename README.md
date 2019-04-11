@@ -209,7 +209,7 @@ generating reports in form of graphs.
 usage:
 ```
 python database_testing_runner.py [-h] [-j JMX] [-c CONFIG_FILE] [-r REPORT_DIR]
-                                [-sc SOFT_CLEANUP] [-hc HARD_CLEANUP]
+                                  [-sc SOFT_CLEANUP] [-hc HARD_CLEANUP]
 ```
 
 
@@ -235,8 +235,9 @@ run example:
 ```
 python database_testing_runner.py \
        --jmx jmeter_test_suite/connect_to_db_performance_testing.jmx \
-       --config_file jmeter_test_suite/config.ini --report_dir ~/reports/ \
-       --soft_cleanup false
+       --config_file jmeter_test_suite/config.ini \
+       --report_dir /var/www/html/database_testing/reports/test_plan \
+       --soft_cleanup true
 ```
 
 
@@ -253,14 +254,16 @@ INITIAL_DELAY = 2
 USERS_RAMP_UP = 10
 RAMP_UP_STEP_COUNT = 10
 FULL_LOAD_PERIOD = 5
-USERS_STOP_PERIOD = 1
+USERS_STOP_PERIOD = 0
 NUM_OF_CONNECTIONS = 0
 CONNECTION_TIMEOUT = 10000
-DATABASE_URL = jdbc:teradata://54.190.11.132/testing_db
+DATABASE_URL = jdbc:teradata://37.252.70.55/testing_db
 JDBC_DRIVER_CLASS = com.teradata.jdbc.TeraDriver
+TESTBOX_IP = localhost
+TERADATA_IP = 37.252.70.55
 USERNAME = dbc
 PASSWORD = dbc
-STATEMENT = "SELECT 1 FROM table1"
+INPUT_FILE = ./input/run_1.sql
 GRANULARITY = 10
 
 ....
