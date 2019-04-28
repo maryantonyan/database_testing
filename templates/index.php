@@ -19,7 +19,7 @@
 								$chart_name = substr($filename, $start + 1, $end - $start);
 								$subtitle = strtoupper(implode(" ", explode("_", $chart_name)));
 								echo "<h3>$subtitle</h3>";
-								echo "<p>34.211.115.141 - TestBox</p>";
+								echo "<p>   127.0.0.1 - TestBox</p>";
 								echo "<p>37.252.70.55 - Teradata</p>";
 							}
 							echo "<a href='".$file."' ><img src='" . $file . "'></a></div>";

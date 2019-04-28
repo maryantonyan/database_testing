@@ -1,0 +1,49 @@
+.Sessions 8 ;
+.LOGON 172.20.11.58/dbc,dbc;
+
+DATABASE testing_db;
+DROP TABLE narrow_table;
+DROP TABLE narrow_table_ERR1;
+DROP TABLE narrow_table_ERR2;
+
+CREATE TABLE narrow_table(
+    id int,
+    t_char_1 varchar(25),
+    t_smallint smallint,
+    t_bigint bigint,
+    t_real real,
+    t_double double precision,
+    t_integer int,
+    t_char_2 varchar(25)
+);
+    
+SET RECORD VARTEXT "|";
+DEFINE
+    id (VARCHAR(5)),
+    t_char_1 (VARCHAR(25) ),
+    t_smallint (varchar(4)),
+    t_bigint (varchar(9)),
+    t_real(varchar(8)),
+    t_double(varchar(17)),
+    t_integer(varchar(7)),
+    t_char_2(varchar(25))
+FILE="testing_table_small_teradata.csv";
+
+BEGIN LOADING testing_db.narrow_table
+ERRORFILES  testing_db.narrow_table_ERR1,
+            testing_db.narrow_table_ERR2;
+INSERT INTO narrow_table(id, t_char_1, t_smallint, t_bigint, t_real, t_double, t_integer, t_char_2)
+VALUES
+    (
+    :id,
+    :t_char_1,
+    :t_smallint,
+    :t_bigint,
+    :t_real,
+    :t_double,
+    :t_integer,
+    :t_char_2
+);
+
+END LOADING;
+LOGOFF;
